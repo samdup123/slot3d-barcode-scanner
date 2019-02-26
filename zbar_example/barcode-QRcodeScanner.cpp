@@ -96,7 +96,7 @@ int main(int argc, char* argv[])
 {
   
   // Read image
-  Mat im = imread("zbar-test-rotated1.jpg");
+  Mat im = imread("b/2.jpg");
   
   // Variable for decoded objects 
   vector<decodedObject> decodedObjects;
