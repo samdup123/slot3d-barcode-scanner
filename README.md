@@ -4,3 +4,5 @@ how to compile:
 where to get zbar documentation
     http://zbar.sourceforge.net/api/
     
+
+![results](rotatedResults.png "Title")
