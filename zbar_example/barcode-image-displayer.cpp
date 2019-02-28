@@ -1,7 +1,6 @@
 #include "barcode-image-scanner-zbar.hpp"
 #include <opencv2/opencv.hpp>
 #include "opencv2/highgui.hpp"
-#include <zbar.h>
 
 // Display barcode and QR code location  
 void display(cv::Mat &im, std::vector<decodedObject>&decodedObjects)
