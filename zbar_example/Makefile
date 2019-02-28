@@ -3,8 +3,13 @@ CFLAGS=-I/usr/include/opencv -lopencv_shape -lopencv_stitching -lopencv_superres
 
 DEPS = barcode-image-scanner-zbar.h
 
+all: barcode
+
 %.o: %.c $(DEPS)
 	$(PP) -c -o $@ $< $(CFLAGS)
 
 barcode: barcode-image-displayer.o barcode-image-scanner-zbar.o 
 	$(PP) barcode-image-displayer.o barcode-image-scanner-zbar.o $(CFLAGS)
+
+clean: 
+	rm -r obj
