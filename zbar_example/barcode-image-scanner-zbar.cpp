@@ -1,10 +1,9 @@
 #include <opencv2/opencv.hpp>
-#include "opencv2/highgui.hpp"
 #include "barcode-image-scanner-zbar.hpp"
 #include <zbar.h>
 
 // Find and decode barcodes and QR codes
-void decode(cv::Mat &im, std::vector<decodedObject>&decodedObjects)
+void find_and_decode_symbologies(cv::Mat &im, std::vector<decodedObject>&decodedObjects)
 {
   // Create zbar scanner
   zbar::ImageScanner scanner;
@@ -41,6 +40,31 @@ void decode(cv::Mat &im, std::vector<decodedObject>&decodedObjects)
     }
     
     decodedObjects.push_back(obj);
+  }
+}
+
+void put_outlines_around_barcodes(cv::Mat &im, std::vector<decodedObject>&decodedObjects, uint8_t r, uint8_t g, uint8_t b, uint8_t lineWidth)
+{
+  // Loop over all decoded objects
+  for(int i = 0; i < decodedObjects.size(); i++)
+  {
+    std::vector<cv::Point> points = decodedObjects[i].location;
+    std::vector<cv::Point> hull;
+    
+    // If the points do not form a quad, find convex hull
+    if(points.size() > 4)
+      cv::convexHull(points, hull);
+    else
+      hull = points;
+    
+    // Number of points in the convex hull
+    int n = hull.size();
+    
+    // draw the lines around the barcodes
+    for(int j = 0; j < n; j++)
+    {
+      cv::line(im, hull[j], hull[ (j+1) % n], cv::Scalar(r,g,b), lineWidth);
+    }
   }
 }
 

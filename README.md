@@ -1,5 +1,7 @@
 how to compile:
-    g++ barcode-image-scanner-zbar.cpp `pkg-config --cflags --libs opencv zbar`
+    cd zbar_example
+    make clean
+    make
 
 where to get zbar documentation
     http://zbar.sourceforge.net/api/
