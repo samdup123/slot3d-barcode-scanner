@@ -1,4 +1,3 @@
-#include <opencv2/opencv.hpp>
 #include "barcode-image-scanner-zbar.hpp"
 #include <zbar.h>
 
